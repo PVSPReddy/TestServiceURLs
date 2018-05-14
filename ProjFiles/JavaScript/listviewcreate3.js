@@ -42,6 +42,7 @@ function SubmitURL()
     // xobj.open("POST", "./ProjFiles/PHPServices/ReceiveService.php?userRequest=GetLocalImages", true);
     xobj.open("GET", serviceURL, true);
     xobj.setRequestHeader("Content-type", "application/json");
+    // xobj.setRequestHeader("dataType","jsonp");
     //xmlhttp.setRequestHeader( 'Access-Control-Allow-Origin', '*');
     xobj.send();
     //xobj.send(dbParam);
