@@ -29,6 +29,31 @@ else
 $rawData = json_decode(file_get_contents('php://input'),true);
 */
 
+/*
+if (isset($_SERVER["HTTP_ORIGIN"]) === true) {
+	$origin = $_SERVER["HTTP_ORIGIN"];
+	$allowed_origins = array(
+		"http://public.app.moxio.com",
+		"https://foo.app.moxio.com",
+		"https://lorem.app.moxio.com"
+	);
+	if (in_array($origin, $allowed_origins, true) === true) {
+		header('Access-Control-Allow-Origin: ' . $origin);
+		header('Access-Control-Allow-Credentials: true');
+		header('Access-Control-Allow-Methods: POST');
+		header('Access-Control-Allow-Headers: Content-Type');
+	}
+	if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+		exit; // OPTIONS request wants only the policy, we can stop here
+	}
+}
+*/
+
+header('Access-Control-Allow-Origin: ' . "*");
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Content-Type');
+
 //$curl = curl_init($url);
 // $url = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec&ndplr=1";
 $url = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec";
