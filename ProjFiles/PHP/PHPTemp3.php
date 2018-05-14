@@ -54,9 +54,9 @@ header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
-header('Access-Control-Max-Age: 604800');
+//header('Access-Control-Max-Age: 604800');
   //if you need special headers
-header('Access-Control-Allow-Headers: x-requested-with');
+//header('Access-Control-Allow-Headers: x-requested-with');
 
 //$curl = curl_init($url);
 // $url = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec&ndplr=1";
