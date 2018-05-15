@@ -1,5 +1,12 @@
 <?php
-$url = "curl -L https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
+try
+{
+$url1 = "curl -L https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
+$url = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
+
+// $headers = get_headers($url);
+// echo substr($headers[0], 9, 3);
+// exit;
 
 $curl = curl_init($url);
 curl_setopt($curl, CURLOPT_URL, $url);
@@ -8,38 +15,22 @@ curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 $curl_response = curl_exec($curl);
+$resp = json_decode($curl_response, true);
+// echo json_encode($resp['folder_items']);
+// exit;
 $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-echo $httpcode;
+//echo $httpcode;
 //echo "done";
-echo $curl_response;
-//print($curl_response);
-//echo "done ended";
-exit;
-if ($curl_response === false) 
+//echo $curl_response;
+$responseArray = array(
+	"status_code" => $httpcode ,
+	"folder_items" => $resp,
+	"message" => "task completed"
+);
+echo json_encode($responseArray);
+}
+catch(PDOException $e)
 {
-    $info = curl_getinfo($curl);
-    curl_close($curl);
-    die('error occured during curl exec. Additioanl info: ' . var_export($info));
+	echo $e->getMessage();
 }
-curl_close($curl);
-//$decoded = json_decode($curl_response);
-if (isset($decoded->response->status) && $decoded->response->status == 'ERROR') {
-    die('error occured: ' . $decoded->response->errormessage);
-}
-
-$response = $curl_response; /*array("message"=>"Songs cannot be retrived.",
-                 "code"=>"0",
-                 $curl_response
-                 );*/
-return $response;
-exit;
-echo 'response ok!';
-//var_export($decoded->response);
-
-// class GASServices
-// {
-//     function TestOne($url)
-//     {
-//     }
-// }
 ?>
