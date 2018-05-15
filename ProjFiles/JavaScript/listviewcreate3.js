@@ -40,18 +40,23 @@ function SubmitURL()
     };
     //https://script.googleusercontent.com/macros/echo?user_content_key=WlPuOMq3PmOh42lx4dnxOQZxEvgP2pjLPSHzKYAmPK4wPQ7oy5EldtQ6YKs-3edtTOal2YOlQnLjIMJZFBk1Q6tLi_DjAs_Km5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnBOdbNCjBmbjEOOPRrZzbJVgEeGpP0pCiiIfVfhrzVlD0XAZUKozy0efPajHEymamqZYwDtuJYeH&lib=MeTk28aelQajx2xUtX-QeZ3cAfuWwl7sa
     // xobj.open("POST", "./ProjFiles/PHPServices/ReceiveService.php?userRequest=GetLocalImages", true);
-    xobj.open("GET", serviceURL, true);
+    // xobj.open("GET", serviceURL, true);
+    xobj.open("GET", serviceURL);
 
-
-    xobj.setRequestHeader("Content-type", "application/json");
-    xobj.setRequestHeader("Cache-Control", "no-cache");
-    xobj.setRequestHeader("Access-Control-Allow-Origin","*");
-    xobj.setRequestHeader("Access-Control-Allow-Methods","GET,PUT,POST,DELETE");
-    xobj.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
-    xobj.setRequestHeader("Access-Control-Allow-Credentials", true);
-    xobj.withCredentials = true;
-    xobj.setRequestHeader("dataType","jsonp");
-    //xmlhttp.setRequestHeader( 'Access-Control-Allow-Origin', '*');
+    //xobj.setRequestHeader("Access-Control-Allow-Origin","*");
+    // xobj.setRequestHeader("accept", "application/json,application/jsonP,text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
+    // xobj.setRequestHeader("Content-type", "text/javascript; charset=utf-8");
+    //xobj.setRequestHeader("Content-type", "application/json");
+    
+    // xobj.setRequestHeader("Cache-Control", "no-cache, no-store, max-age=0, must-revalidate");
+    //xobj.setRequestHeader("Cache-Control", "no-cache");
+    // xobj.setRequestHeader("Access-Control-Allow-Origin","*");
+    //xobj.setRequestHeader("Access-Control-Allow-Methods","GET,PUT,POST,DELETE");
+    //xobj.setRequestHeader("Access-Control-Allow-Headers", "*");
+    // xobj.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    //xobj.setRequestHeader("Access-Control-Allow-Credentials", true);
+    //xobj.withCredentials = true;
+    //xobj.setRequestHeader("dataType","jsonp");
     xobj.send();
     //xobj.send(dbParam);
 }
