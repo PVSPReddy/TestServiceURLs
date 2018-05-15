@@ -83,6 +83,8 @@ else
 
 function HandleRequest($processNO)
 {
+    echo "process started level 1";
+    //exit;
     $executedMethod = "";
     $response=array();
     $url1 = "curl -L https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
@@ -91,6 +93,7 @@ function HandleRequest($processNO)
     {
         case "1":
 
+            echo "process started level 2";
             $executedMethod = "step 1 execution started";
             $curl = curl_init($url);
             curl_setopt($curl, CURLOPT_URL, $url);
@@ -98,8 +101,10 @@ function HandleRequest($processNO)
             curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             $curl_response = curl_exec($curl);
+            echo "process started level 3";
             $response = json_decode($curl_response, true);
             $executedMethod = "step 1 executed";
+            echo "process started level 4";
             // echo json_encode($resp['folder_items']);
             // exit;
             //$httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
