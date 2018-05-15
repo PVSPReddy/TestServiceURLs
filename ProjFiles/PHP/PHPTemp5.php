@@ -89,8 +89,8 @@ function HandleRequest($processNO)
     $response=array();
     $url1 = "curl -L https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
     $url = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
-
-    echo "process started level 1.1";
+    $executedTime = "2018/05/15 11:07:00";
+    echo "process started level 1.1".$executedTime;
 
     try
     {
@@ -98,7 +98,7 @@ function HandleRequest($processNO)
     {
         case "1":
 
-            echo "process started level 2";
+            echo "process started level 2".$executedTime;
             $executedMethod = "step 1 execution started";
             $curl = curl_init($url);
             curl_setopt($curl, CURLOPT_URL, $url);
@@ -106,10 +106,10 @@ function HandleRequest($processNO)
             curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             $curl_response = curl_exec($curl);
-            echo "process started level 3";
+            echo "process started level 3".$executedTime;
             $response = json_decode($curl_response, true);
             $executedMethod = "step 1 executed";
-            echo "process started level 4";
+            echo "process started level 4".$executedTime;
             // echo json_encode($resp['folder_items']);
             // exit;
             //$httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
@@ -169,7 +169,7 @@ catch(PDOException $ex)
         (
             "selected_method" => $processNO,
             "executed_method" => $executedMethod,
-            "edited_time" => "2018/05/15 11:02:00",
+            "edited_time" => $executedTime,
             "status_code" => "not Available" ,
             "message" => "task completed"
         ),
