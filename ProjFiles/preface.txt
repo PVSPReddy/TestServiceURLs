@@ -1,0 +1,70 @@
+Failed to load https://script.google.com/macros/s/AKfycbykG5cuXF0ieP_nWviXLXDtPL4XuncvFtdDEqzNe1JiiA1Xzto/exec: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://testapiserviceurl.gearhostpreview.com' is therefore not allowed access. The response had HTTP status code 405.
+
+I got the above error , to solve this in the javascript file all i do is to remove the headers
+this solved the issue as for the "GET" service no "Preflighted request headers are required" is requires 
+following is the code:
+function SubmitURL()
+{
+  var urls="";
+  var serviceURL = document.forms["addURLForm"]["serviceURL"].value;
+  if(serviceURL == "")
+  {
+    serviceURL = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec";
+  }
+  else
+  {
+
+  }
+  var xobj = new XMLHttpRequest();
+    xobj.onreadystatechange = function () 
+    {
+      if (xobj.readyState == 4 && xobj.status == 200)
+      {
+        var responseData = xobj.response;
+        if(responseData != "")
+        {
+          var options = JSON.parse(responseData);
+          window.alert(responseData);
+        }
+      }
+      else
+      {
+        //window.alert("Not working");
+      }
+    };
+    // xobj.open("GET", serviceURL, true);
+    xobj.open("GET", serviceURL);
+    xobj.send();
+}
+
+
+following are the urls for reference of CORS error Cross origin reference error.
+
+https://developer.mozilla.org/en-US/search?q=cors
+https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+http://arunranga.com/examples/access-control/
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/OPTIONS
+https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Server-Side_Access_Control
+https://developer.mozilla.org/en-US/docs/Glossary/Simple_header
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers
+
+
+
+
+
+
+
+
+CORS In Action
+Browsers such as Firefox 3.5 and above implement the W3C Cross-Origin Request Sharing (CORS) specification as a means to mitigate cross-site requests initiated by the XMLHttpRequest object in JavaScript as well as for web fonts. You can read more about Access Control at developer.mozilla.org, including code snippets. Here you'll find some examples of the XMLHttpRequest API as a "container" for access control.
+
+Four examples are given below. Simply "View Source" them to see how they work-- all JavaScript is resident within the XHTML. Full code listings showing the PHP scripts I used to handle requests (and formulate responses) will also be posted soonish. TXT dumps of the header exchanges between client and server are posted next to each example. Note that in keeping with the access control specification, Firefox 3.5 will always send the ORIGIN header when making requests mitigated by the CORS specification. The XMLHttpRequest object in Firefox 3.5 and beyond takes care of sending access-control headers; developers need to ensure that the resources they are accessing are sending the right headers back.
+
+The "Simple Invocation using GET" gives an example of content resident on this server making a GET request to content resident on another server. No preflighting takes place since the request is a GET with no custom headers. Here's a TXT file dump of the header exchanges between a beta of Firefox 3.5 and the server in the "Simple" scenario.
+
+The "Preflighted Invocation using POST with application/xml and Custom Headers" gives an example of content resident on this server making a POST request to content resident on another server (with POST data of type application/xml, as well as setting a custom request header using the setHeader method of XMLHttpRequest (the imaginary X-PINGARUNER). Since this request has POST data with MIME Types other than text/plain, multipart/form-data, and application/x-www-form-urlencoded and since the example sends a custom header (X-PINGARUNER), this request is "preflighted" with an OPTIONS request header first, checks for the resource setting the appropriate access headers, and then makes the actual request. Here's a TXT file dump of the header exchanges between a beta of Firefox 3.5 and the server in the "preflighted" scenario.
+
+The "Credentialed Request" uses a simple invocation scenario (with GET -- thus, no preflighting takes place) but accesses a resource which sets a simple counter Cookie. The code sample (do a View Source) shows that the withCredentials flag of the XMLHttpRequest object is set. Here's a TXT file dump of the header exchanges between a beta of Firefox 3.5 and the server in the credentialed request.
+
+The "Request for a Resource that Sends Cookies but No Credentials API Flag Set" is the same example as above, but with the withCredentials usage commented out.
