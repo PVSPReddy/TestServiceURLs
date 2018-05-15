@@ -161,21 +161,25 @@ function HandleRequest($processNO)
 }
 catch(PDOException $ex)
 {
-    $response = array("error_report" => $ex->getMessage());
+    // $$curl_response = array("error_report" => $ex->getMessage());
+    // $response = json_decode($curl_response, true);
+    $response = array("error_report" => "error");//$ex->getMessage());
 }
-    $responseArray = array_merge
-    (
-        array
-        (
-            "selected_method" => $processNO,
-            "executed_method" => $executedMethod,
-            "edited_time" => $executedTime,
-            "status_code" => "not Available" ,
-            "message" => "task completed"
-        ),
-        $response
-    );
-    return $responseArray;
+echo $response;
+    // $responseArray = array_merge
+    // (
+    //     array
+    //     (
+    //         "selected_method" => $processNO,
+    //         "executed_method" => $executedMethod,
+    //         "edited_time" => $executedTime,
+    //         "status_code" => "not Available" ,
+    //         "message" => "task completed"
+    //     ),
+    //     $response
+    // );
+    // return $responseArray;
+    return $response;
 }
 
 function encodeXml($responseData) {
