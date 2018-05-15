@@ -76,7 +76,7 @@ else
 	//here we are converting data from json object to an array
     $json = json_decode(file_get_contents('php://input'),true);
     //$raw =  Request_Handler($userRequest, $json);
-    $raw = HandleRequest($method);
+    $raw = HandleRequest($userRequest);
     $response = encodeJson($raw);
     echo $response."\n";
 }
@@ -154,7 +154,7 @@ function HandleRequest($processNO)
         (
             "selected_method" => $processNO,
             "executed_method" => $executedMethod,
-            "edited_time" => "2018/05/15 10:47:00",
+            "edited_time" => "2018/05/15 10:49:00",
             "status_code" => "not Available" ,
             "message" => "task completed"
         ),
