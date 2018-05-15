@@ -8,11 +8,10 @@ $url = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTY
 // echo substr($headers[0], 9, 3);
 // exit;
 
-$curl_response = file_get_contents($url);
-echo $curl_response;
-
+/*
 //the below code is also working the problem is that google url sends data when used in locahost server and in postman
 //but gives no response when used via live server.
+*/
 /*
 $curl = curl_init($url);
 curl_setopt($curl, CURLOPT_URL, $url);
@@ -21,7 +20,7 @@ curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 $curl_response = curl_exec($curl);
-*/
+
 
 $resp = json_decode($curl_response, true);
 // echo json_encode($resp['folder_items']);
@@ -36,7 +35,7 @@ $responseArray = array(
 	"folder_items" => $resp,
 	"message" => "task completed"
 );
-*/
+* /
 $responseArray = array_merge
 (
 	array(
@@ -46,6 +45,11 @@ $responseArray = array_merge
 	$resp
 );
 echo json_encode($responseArray);
+*/
+$curl_response = file_get_contents($url);
+echo $curl_response;
+//exit;
+//echo json_encode($curl_response);
 }
 catch(PDOException $e)
 {
