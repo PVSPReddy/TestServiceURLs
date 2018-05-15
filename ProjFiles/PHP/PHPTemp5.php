@@ -89,6 +89,11 @@ function HandleRequest($processNO)
     $response=array();
     $url1 = "curl -L https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
     $url = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
+
+    echo "process started level 1.1";
+
+    try
+    {
     switch($processNO)
     {
         case "1":
@@ -153,13 +158,18 @@ function HandleRequest($processNO)
         default :
         break;
     };
+}
+catch(PDOException $ex)
+{
+    $response = array("error_report" => $ex->getMessage());
+}
     $responseArray = array_merge
     (
         array
         (
             "selected_method" => $processNO,
             "executed_method" => $executedMethod,
-            "edited_time" => "2018/05/15 10:49:00",
+            "edited_time" => "2018/05/15 11:02:00",
             "status_code" => "not Available" ,
             "message" => "task completed"
         ),
