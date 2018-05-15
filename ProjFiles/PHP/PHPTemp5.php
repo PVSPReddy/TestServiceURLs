@@ -91,6 +91,7 @@ function HandleRequest($processNO)
     {
         case "1":
 
+            $executedMethod = "step 1 execution started";
             $curl = curl_init($url);
             curl_setopt($curl, CURLOPT_URL, $url);
             //curl_setopt($curl, CURLOPT_HEADER, true);// this changes response to x-formulated data type
@@ -98,7 +99,7 @@ function HandleRequest($processNO)
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             $curl_response = curl_exec($curl);
             $response = json_decode($curl_response, true);
-            $executedMethod = "step 1";
+            $executedMethod = "step 1 executed";
             // echo json_encode($resp['folder_items']);
             // exit;
             //$httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
@@ -118,13 +119,15 @@ function HandleRequest($processNO)
         break;
         case "2":
 
+            $executedMethod = "step 2 execution started";
             $curl_response = file_get_contents($url);
             $response = json_decode($curl_response, true);
-            $executedMethod = "step 2";
+            $executedMethod = "step 2 executed";
 
         break;
         case "3":
 
+            $executedMethod = "step 3 execution started";
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
@@ -132,7 +135,7 @@ function HandleRequest($processNO)
             curl_setopt($curl,CURLOPT_FOLLOWLOCATION, true);
             $curl_response = curl_exec($curl);
             $response = json_decode($curl_response, true);
-            $executedMethod = "step 3";
+            $executedMethod = "step 3 executed";
             curl_close($curl);
         
         break;
