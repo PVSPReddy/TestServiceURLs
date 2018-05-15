@@ -22,10 +22,20 @@ $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 //echo $httpcode;
 //echo "done";
 //echo $curl_response;
+/*
 $responseArray = array(
 	"status_code" => $httpcode ,
 	"folder_items" => $resp,
 	"message" => "task completed"
+);
+*/
+$responseArray = array_merge
+(
+	array(
+		"status_code" => $httpcode ,
+		"message" => "task completed"
+	),
+	$resp
 );
 echo json_encode($responseArray);
 }
