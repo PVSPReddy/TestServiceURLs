@@ -139,7 +139,7 @@ class UserServices extends ServerStatus
             $parameters = $data['parameters'];
             if(!isset($url))
             {
-                $url = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec";
+                //$url = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec";
             }
             
             $externalMethodService = new AccessGoogleServices();

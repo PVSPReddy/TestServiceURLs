@@ -12,7 +12,7 @@ class AccessGoogleServices
             switch($method)
             {
                 case "Get":
-                    $this->GetData($url, $Headers);
+                    return ($this->GetData($url, $Headers));
                 break;
                 case "Post":
                     $this->PostData($url, $parameters, $Headers);
@@ -56,12 +56,11 @@ class AccessGoogleServices
                 $response
             );
             curl_close($curl);
-            echo json_encode($responseArray);
             return $responseArray;
         }
         catch(PDOException $e)
         {
-
+            echo $e->getMessage(); 
         }
     }
 

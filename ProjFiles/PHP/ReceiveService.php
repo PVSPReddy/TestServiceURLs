@@ -51,7 +51,6 @@ if(strpos($requestContentType,'application/json') !== false)
     //here we are converting data from json object to an array
 	$json = json_decode(file_get_contents('php://input'),true);
 	$raw = $rh -> Request_Handler($userRequest, $json);
-	echo file_get_contents('php://input');
     $response = encodeJson($raw);
     echo $response."\n";
 }
