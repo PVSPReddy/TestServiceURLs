@@ -1,0 +1,43 @@
+I have created a Google App Script URL with a "GET" serviec that gives a basic JSON data as response.
+
+To work with this using javasript
+---------------------------------
+we have to use basic "GET AJAX Call" with out any headers that cause preflight header request response.
+this is the example with the example URL
+
+function SubmitURL()
+{
+  var urls="";
+  var serviceURL = document.forms["addURLForm"]["serviceURL"].value;
+  if(serviceURL == "")
+  {
+    serviceURL = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec";
+  }
+  else
+  {
+
+  }
+  var xobj = new XMLHttpRequest();
+    xobj.onreadystatechange = function () 
+    {
+      if (xobj.readyState == 4 && xobj.status == 200)
+      {
+        var responseData = xobj.response;
+        if(responseData != "")
+        {
+          var options = JSON.parse(responseData);
+          window.alert(responseData);
+        }
+      }
+    };
+    xobj.open("GET", serviceURL);
+    xobj.send();
+} 
+
+
+To work with this using PHP
+----------------------------
+for php we have to use "cURL" object and set some Options to the object, but should not add any headers as same as 
+we have learned with javascript also.
+
+the following is the example
