@@ -87,9 +87,9 @@ function HandleRequest($processNO)
     //exit;
     $executedMethod = "";
     $response=array();
-    $url = "curl -L https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
-    $url1 = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
-    $executedTime = "\t2018/05/16 03:54:00\n";
+    $url1 = "curl -L https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
+    $url = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
+    $executedTime = "\t2018/05/16 04:00:00\n";
     echo "process started level 1.1".$executedTime;
 
     try
@@ -102,7 +102,7 @@ function HandleRequest($processNO)
             $executedMethod = "step 1 execution started";
             $curl = curl_init($url);
             curl_setopt($curl, CURLOPT_URL, $url);
-            //curl_setopt($curl, CURLOPT_HEADER, true);// this changes response to x-formulated data type
+            curl_setopt($curl, CURLOPT_HEADER, true);// this changes response to x-formulated data type
             curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             $curl_response = curl_exec($curl);
