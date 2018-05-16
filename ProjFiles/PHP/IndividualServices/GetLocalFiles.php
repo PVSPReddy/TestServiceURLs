@@ -26,6 +26,6 @@ foreach ($files1 as $key => $value)
    print_r($result);
    */
   $files1 = scandir($dir);
-
+echo $files1;
   
 ?>

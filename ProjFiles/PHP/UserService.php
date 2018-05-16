@@ -2,7 +2,7 @@
 
 require_once("ConnectionService.php");
 require_once("ServerStatus.php");
-require_once("AccessOtherServiceCalls.php");
+require_once("AccessGoogleServiceCalls.php");
 
 class UserServices extends ServerStatus
 {
@@ -142,8 +142,8 @@ class UserServices extends ServerStatus
                 $url = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec";
             }
             
-            $externalMethodService = new AccessExternalServiceCalls();
-            $response = $externalMethodService -> AccessExternalServices($url, $method, $parameters, $Headers);
+            $externalMethodService = new AccessGoogleServices();
+            $response = $externalMethodService -> AccessGoogleServiceCall($url, $method, $parameters, $Headers);
             return $response;
         }
         catch(PDOException $e)
