@@ -83,13 +83,13 @@ else
 
 function HandleRequest($processNO)
 {
-    echo "process started level 1.0"."oooo";
+    echo "process started level 1.0"."\toooo\n";
     //exit;
     $executedMethod = "";
     $response=array();
     $url1 = "curl -L https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
     $url = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
-    $executedTime = "2018/05/15 11:07:00";
+    $executedTime = "\t2018/05/15 11:07:00\n";
     echo "process started level 1.1".$executedTime;
 
     try
@@ -108,6 +108,8 @@ function HandleRequest($processNO)
             $curl_response = curl_exec($curl);
             echo "process started level 3".$executedTime;
             $response = json_decode($curl_response, true);
+            echo $curl_response;
+            exit;
             $executedMethod = "step 1 executed";
             echo "process started level 4".$executedTime;
             // echo json_encode($resp['folder_items']);
@@ -133,6 +135,8 @@ function HandleRequest($processNO)
             $curl_response = file_get_contents($url);
             $response = json_decode($curl_response, true);
             $executedMethod = "step 2 executed";
+            echo $curl_response;
+            exit;
 
         break;
         case "3":
@@ -147,6 +151,8 @@ function HandleRequest($processNO)
             $response = json_decode($curl_response, true);
             $executedMethod = "step 3 executed";
             curl_close($curl);
+            echo $curl_response;
+            exit;
         
         break;
         case "4":
@@ -165,7 +171,7 @@ catch(PDOException $ex)
     // $response = json_decode($curl_response, true);
     $response = array("error_report" => "error");//$ex->getMessage());
 }
-echo $response;
+echo json_encode($response);
     // $responseArray = array_merge
     // (
     //     array
