@@ -41,3 +41,31 @@ for php we have to use "cURL" object and set some Options to the object, but sho
 we have learned with javascript also.
 
 the following is the example
+<?php
+try
+{
+	$url1 = "curl -L https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
+	$url = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec?start=1325437200&end=1325439000";
+	$curl = curl_init($url);
+	curl_setopt($curl, CURLOPT_URL, $url);
+	//curl_setopt($curl, CURLOPT_HEADER, true);// this changes response to x-formulated data type.
+	curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 0);// 0->removes the timeout or set the timeout to never.
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);//to skip SSL verification.
+	curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);//if url redirects to another location then our curl also go to that location to get the final response.
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	$curl_response = curl_exec($curl);
+	echo $curl_response;
+	curl_close($curl);
+	exit;
+}
+catch(PDOException $e)
+{
+	echo $e->getMessage();
+}
+?>
+
+
+with out this line we will get no or null response without throwing any error
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+so for google and som other few websites this above line is mandatory
