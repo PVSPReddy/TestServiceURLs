@@ -1,0 +1,20 @@
+1) Google Script Get Service :
+------------------------------
+
+URL:
+http://localhost/TestServiceURLs/ProjFiles/PHP/ReceiveService.php?userRequest=GetDriveImages
+
+Headers:
+Content-Type:application/json
+
+Request Object:
+{
+	"url" : "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec",
+	"access_method" : "Get",
+	"headers" : "",
+	"parameters" : ""
+}
+
+
+
+
