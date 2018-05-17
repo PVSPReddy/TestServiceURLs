@@ -1,7 +1,7 @@
 //var json = require('../ProjFiles/LocalFiles/JsonFiles/URLs.json');
 // var fs = require('fs');
 
-function SubmitURL()
+function SubmitGETURL()
 {
   var urls="";
   var serviceURL = document.forms["addURLForm"]["serviceURL"].value;
@@ -59,6 +59,115 @@ function SubmitURL()
     //xobj.setRequestHeader("dataType","jsonp");
     xobj.send();
     //xobj.send(dbParam);
+}
+
+
+
+function SubmitPOSTURLOne()
+{
+  var urls="";
+  var serviceURL = document.forms["addURLForm"]["serviceURL"].value;
+  if(serviceURL == "")
+  {
+    // serviceURL = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec";
+    serviceURL = "https://script.google.com/macros/s/AKfycbxR_xKju3dN5Wfj7FTLLxCmhOgZOLtv0d7FhUhVh80JtkuJdJI/exec";
+  }
+  else
+  {
+
+  }
+  var obj = { "name":"labnol", "blog":"ctrlq", "type":"post"  }
+  //dbParam = JSON.stringify(obj);
+  var xobj = new XMLHttpRequest();
+    // xobj.overrideMimeType("application/json");
+    xobj.onreadystatechange = function () 
+    {
+      if (xobj.readyState == 4 && xobj.status == 200)
+      {
+        //onclick="window.open('anotherpage.html', '_blank');"
+        // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+        //callback(xobj.responseText);
+        var responseData = xobj.response;
+        if(responseData != "")
+        {
+          var options = JSON.parse(responseData);
+          window.alert(responseData);
+          //var y=document.getElementById("listview");
+          //y.innerHTML = data;
+        }
+      }
+      else
+      {
+      }
+    };
+    var headerObj = "Contenttype=application/json" ;
+    var dbParam = JSON.stringify(obj);
+    // var dbParam = obj;
+    //var dbParam = "employeeStatus='Active'&name='Henry'";//this works but sends data to contents in postdata.
+    //var serviceURLs = serviceURL + "?" + dbParam;
+    // xobj.open("POST", (serviceURL +"?"+ JSON.stringify(headerObj)), true);
+    xobj.open("POST", (serviceURL +"?"+ headerObj), true);
+    //xobj.setRequestHeader("Content-type", "application/json");
+    //xobj.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    // xobj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xobj.send(dbParam);
+}
+
+function SubmitPOSTURLThree()
+{
+  var urls="";
+  var serviceURL = "https://script.google.com/macros/s/AKfycbxR_xKju3dN5Wfj7FTLLxCmhOgZOLtv0d7FhUhVh80JtkuJdJI/exec";//document.forms["addURLForm"]["serviceURL"].value;
+  if(serviceURL == "")
+  {
+    // serviceURL = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec";
+    serviceURL = "https://script.google.com/macros/s/AKfycbxR_xKju3dN5Wfj7FTLLxCmhOgZOLtv0d7FhUhVh80JtkuJdJI/exec";
+  }
+  else
+  {
+
+  }
+  var obj = { "name":"labnol", "blog":"ctrlq", "type":"post"  }
+   /*
+  fetch(url) // Call the fetch function passing the url of the API as a parameter
+  .then(function() 
+  {
+   // Your code for handling the data you get from the API
+  })
+  .catch(function() 
+  {
+    // This is where you run code if the server returns any errors
+  });
+  */
+  var dbParam = JSON.stringify(obj);
+  // var dbParam = obj;
+  fetch("https://script.google.com/macros/s/AKfycbxR_xKju3dN5Wfj7FTLLxCmhOgZOLtv0d7FhUhVh80JtkuJdJI/exec",
+  {
+    method : "post",
+    //mode: 'cors',
+    // data: dbParam,
+    body:dbParam,//payload : obj,
+    redirect: 'follow',
+    //followRedirects:true,
+    // muteHttpExceptions:true
+  }) // Call the fetch function passing the url of the API as a parameter
+  .then(function(data) 
+  {
+    // var dss = data;
+    // var ppr = JSON.parse(data);
+    // var dddd = JSON.stringify(dss);
+    //var options = JSON.parse(data);
+    //window.alert(data);
+   // Your code for handling the data you get from the API
+  })
+  .then(function (result) 
+  {
+    alert(result);
+  })
+  .catch(function(e) 
+  {
+    window.alert(e);
+    // This is where you run code if the server returns any errors
+  });
 }
 
 /*
