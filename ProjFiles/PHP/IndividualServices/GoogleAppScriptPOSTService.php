@@ -30,7 +30,7 @@ try
     curl_setopt($curl, CURLOPT_POSTFIELDS, $data); 
 	//curl_setopt($curl, CURLOPT_HEADER, true);// this changes response to x-formulated data type
 	//curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 0);
-	//curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 	curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $curl_response = curl_exec($curl);
